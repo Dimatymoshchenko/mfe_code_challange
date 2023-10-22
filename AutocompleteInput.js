@@ -34,9 +34,9 @@ class AutocompleteInput extends HTMLElement {
 
   init() {
     this.shadow = this.attachShadow({ mode: "open" });
+    this.apiUrl = this.getAttribute("api-url") || DEFAULT_API_URL;
 
     this.createElements();
-    this.apiUrl = this.getAttribute("api-url") || DEFAULT_API_URL;
   }
 
   initStyles() {
