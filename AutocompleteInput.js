@@ -105,17 +105,21 @@ class AutocompleteInput extends HTMLElement {
       this.input.value = clickedElement.textContent;
       this.clearResults();
 
-      // Create and dispatch a custom event with the chosen destination
-      const destinationSelected = new CustomEvent("destinationSelected", {
-        bubbles: true,
-        composed: true,
-        detail: {
-          destination: clickedElement.textContent,
-        },
-      });
-
-      this.dispatchEvent(destinationSelected);
+      this.emit(clickedElement.textContent);
     }
+  }
+
+  emit(value) {
+    // Create and dispatch a custom event with the chosen destination
+    const destinationSelected = new CustomEvent("destinationSelected", {
+      bubbles: true,
+      composed: true,
+      detail: {
+        destination: value,
+      },
+    });
+
+    this.dispatchEvent(destinationSelected);
   }
 
   createClearButton() {
@@ -217,6 +221,7 @@ class AutocompleteInput extends HTMLElement {
     this.input.value = "";
     this.clearButton.style.display = "none";
     this.clearResults();
+    this.emit(null);
   }
 }
 

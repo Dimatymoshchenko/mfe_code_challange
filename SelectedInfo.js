@@ -15,7 +15,7 @@ class SelectedInfo extends HTMLElement {
   connectedCallback() {
     // Listen to custom events from other components
     document.addEventListener("destinationSelected", (e) => {
-      this.destination = e.detail.destination;
+      this.destination = e.detail.destination ?? "Not selected";
       this.updateDisplay();
     });
 
