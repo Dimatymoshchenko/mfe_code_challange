@@ -104,6 +104,17 @@ class AutocompleteInput extends HTMLElement {
     if (clickedElement && clickedElement.tagName === "DIV") {
       this.input.value = clickedElement.textContent;
       this.clearResults();
+
+      // Create and dispatch a custom event with the chosen destination
+      const destinationSelected = new CustomEvent("destinationSelected", {
+        bubbles: true,
+        composed: true,
+        detail: {
+          destination: clickedElement.textContent,
+        },
+      });
+
+      this.dispatchEvent(destinationSelected);
     }
   }
 
